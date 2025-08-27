@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Picture />
     <div>
       <!-- Input para digitar a condição -->
       <input v-model="status" placeholder="Digite '1' ou '2'" />
@@ -16,6 +17,8 @@
       </p>
       <p v-else>mensagem padrao antes de entrar nos if else</p>
     </div>
+    <button @click="showEmail">{{textoBotao}}</button>
+    <h3 v-show="mostrarEmail">meu email é: {{email}}</h3>
 
     <p>Utilizo as tecnologias:</p>
     <ul>
@@ -27,13 +30,31 @@
 </template>
 
 <script>
+import Picture from "./picture.vue";
 export default {
   name: "Info",
   data() {
     return {
       status: "", // valor inicial do input
       status2: "",
-    };
+      mostrarEmail: false ,
+      email: 'nic.oliveira.dev@gmail.com',
+      textoBotao: 'mostrar email'
+    }
   },
-};
+  components: {
+    Picture,
+  },
+  methods: {
+    showEmail() {
+      console.log("o botao ta fungando")
+      this.mostrarEmail = !this.mostrarEmail
+      if (!this.mostrarEmail) {
+        this.textoBotao = 'mostrar email'
+      }else{
+        this.textoBotao = 'ocultar email'
+      }
+    }
+  },
+}
 </script>
