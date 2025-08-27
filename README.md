@@ -1,11 +1,11 @@
 # projeto
 
-## Project setup
+## instale o node para poder rodar no localhost
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### apos, execute o comando abaixo para poder rodar e compilar 
 ```
 npm run serve
 ```
