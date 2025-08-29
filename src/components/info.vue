@@ -2,6 +2,7 @@
   <div>
     <Picture />
     <div>
+      <h5>{{email}}</h5>
       <!-- Input para digitar a condição -->
       <input v-model="status" placeholder="Digite '1' ou '2'" />
       <!-- Mensagem que aparece só se o usuário digitar "estou trabalhando" -->
@@ -22,9 +23,11 @@
 
     <p>Utilizo as tecnologias:</p>
     <ul>
-      <li>Python</li>
-      <li>Vue</li>
-      <li>Java</li>
+      <li v-for="(tencologia, index) in tecnologiasConhecidas" v-bind:key="index">{{tencologia}}</li>
+      <!-- <li>agora apenas o li com v-for é iterado e repetido. se colocar no ul'pai', ai tudo que tem dentro é iterado e repetido</li> -->
+    </ul>
+    <ul>
+      <li v-for="tencologia in frontEnd" :key="tencologia">{{tencologia.language}}</li>
     </ul>
   </div>
 </template>
@@ -37,10 +40,18 @@ export default {
     return {
       status: "", // valor inicial do input
       status2: "",
-      mostrarEmail: false ,
-      email: 'nic.oliveira.dev@gmail.com',
-      textoBotao: 'mostrar email'
+      mostrarEmail: false,
+      textoBotao: 'mostrar email',
+      tecnologiasConhecidas: ['Python', 'Vue', 'Java'],
+      frontEnd: [
+        {id:1 ,language: 'Html',},
+        {id:2, language: 'Css'},
+        {id:3, language: 'Vue'}
+      ]
     }
+  },
+  props: {
+    email: String
   },
   components: {
     Picture,
@@ -58,3 +69,28 @@ export default {
   },
 }
 </script>
+<style scoped>
+  input {
+    border-style: solid;
+    background-color: #4b9fa5;
+    color: rgb(147, 178, 255);
+    border-radius: 8px;
+  }
+  ::placeholder {
+    color: black;
+  }
+button {
+  background-color: #ffb700;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: background-color 0.5s, border-color 0.5s; /* propriedades que vão animar */
+}
+
+button:hover {
+  background-color: #c06a00;  /* cor muda com animação */
+  border-color: #624600;   /* borda muda com animação */
+  border-style: groove;
+  border-radius: 10px;
+}
+
+</style>
